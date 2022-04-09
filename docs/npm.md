@@ -61,14 +61,78 @@ npm获取配置有7种方式，优先级由高到底。
 
 ### 2. 配置相关命令
 ```
-npm config set <key> <value> [--global]
-npm config get <key>
-npm config delete <key>
-npm config list
-npm config ls
-npm config ls -l
-npm config edit
+npm [config | c] set <key> <value> [--global]
+npm [config | c] get <key>
+npm [config | c] delete <key>
+npm [config | c] list
+npm [config | c] ls
+npm [config | c] ls -l
+npm [config | c] edit
 npm get <key>
 npm set <key> <value> [--global]
-npm help config
+npm help [config | c]
 ```
+
+
+
+
+## 二、npm包版本
+<br>版本号：[^|~]major.major.patch-[标签].[扩展]
+<br>如：3.2.3-beta.3
+
+
+1. 版本限定
+    + ~ 指定主版本号或者主次版本号相同
+        ```
+        ~1.2.3版本包括：>= 1.2.0 并且 < 1.3.0
+        ~0.2.3版本包括：>= 0.2.0 并且 < 0.3.0
+        ~0.0.3版本包括：>= 0.0.0 并且 < 0.0.9
+        ```
+        
+    + ^ 第一个非零版本号相同
+        ```
+        ^1.2.3版本包括：>= 1.2.3 并且 < 2.0.0
+        ^0.2.3版本包括：>= 0.2.3 并且 < 0.3.0
+        ^0.0.3版本包括：>= 0.0.3 并且 < 0.0.4
+        ```
+
+2. semver 语义化版本控制
+    - 主版本号（major）：软件做了不兼容的变更（breaking change 重大变更）；
+    - 次版本号（minor）：Feature版本, 添加功能或者废弃功能，向下兼容；
+    - 补丁版本号（patch）：Bug fix版本, bug 修复，向下兼容。
+    - 版本升级
+        + 升级大版本号：npm version major
+        + 升级补丁版本号：npm version patch
+        + 升级小版本号：npm version minor
+        
+
+3. dist-tag
+    - demo: demo版本, 可能用于验证问题的版本;
+    - dev: 开发版,开发阶段用的，bug 多，体积较大等特点，功能不完善;
+    - alpha: 内部测试（α版本）, 用于内部交流或者测试人员测试，bug较多;
+    - beta: 灰度测版(β版本), 较α版本，有较大的改进，但是还是有bug;
+    - gamma:（γ版本）伽马, 较α和β版本有很大的改进，与稳定版相差无几，用户可使用;
+    - rc：全写：Release Candidate（候选版本）
+    - trial: 试用版本, 本软件通常都有时间限制，过期之后用户如果希望继续使用，一般得交纳一定的费用进行注册或购买。有些试用版软件还在功能上做了一定的限制;
+    - stable: 稳定版;
+    - csp: 内容安全版本, js库常用;
+    - latest: 最新版本, 不指定版本和标签，npm 默认安最新版;
+
+
+## 三、npm包依赖管理
+    + 查看包安装目录
+        ```
+            npm root -g   //查看全局node_modules路径
+            npm root      //查看本地node_modules路径
+        ```
+    + [依赖地狱](http://aprilandjan.github.io/npm/2019/08/02/how-npm-handles-dependency-version-conflict/)
+    + [peerDependencies](https://www.cnblogs.com/wonyun/p/9692476.html)
+    + package-lock
+      把npm更新到v5.x.x以后, npm i会出现一种新的自动生成文件 - package-lock.json。
+      package-lock.json简言之，就是锁定安装时包的版本号。
+    + 自动化
+      + makefile
+      + autod
+
+
+## 四、npm包发布
