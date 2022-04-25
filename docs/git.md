@@ -22,3 +22,6 @@
 
 + 从repo A 迁移 多个文件夹到 repo B 中，要求保留历史记录；
 方案-： subtree split
+
++ 撤销首次提交
+  git update-ref -d HEAD
