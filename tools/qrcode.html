@@ -53,7 +53,14 @@
                     if ($qr_children.length > 0) {
                         $qr_children.remove();
                     }
-                    var qrcode = new QRCode("qrcode", url);
+                    var qrcode = new QRCode("qrcode", {
+                        text: url,
+                        width: 280,
+                        height: 280,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
                 }
             })
         })
