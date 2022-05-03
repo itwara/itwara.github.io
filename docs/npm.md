@@ -136,3 +136,18 @@ npm help [config | c]
 
 
 ## 四、npm包发布
+
+
+## 五、npm link
+    + 查看项目中的link包
+        npm link --global --depth 0
+    + npm link 报 babel 错误
+        + 原因：symlink 带来的路径问题; babel-loader 处理 import/export，软链接的 webpack：babel-loader 默认会从其真实路径读 .babelrc 配置，而不是从当前项目读相关配置；
+        + 解决办法： 
+           + [将webpackConfig.resolve.symlinks： false 即可改为从当前项目读相关配置](https://webpack.docschina.org/configuration/resolve/)
+           + link 的库是不能有 node_modules
+        + 参考资料
+            + [当 webpack 遇上 symlink](https://segmentfault.com/a/1190000011100006)
+            + [记一次npm不发布的情况下调试依赖包遇到的问题](https://blog.csdn.net/ffwangkun/article/details/118156019)
+
+

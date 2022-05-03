@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>url生成二维码</title>
+    <script src="../static/libs/jquery-1.9.0.min.js"></script>
+    <script src="../static/libs/qrcode.js"></script>
+    <style>
+        * {
+            margin: 0;
+            right: 0;
+        }
+
+        .box {
+            width: 50%;
+            margin: 30px auto;
+        }
+
+        .text-area {
+            width: 600px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .submit-btn {
+            width: 80px;
+            height: 50px;
+            margin-left: 30px;
+            font-size: 18px;
+            background: #00b0b4;
+            cursor: pointer;
+        }
+
+        .qr-code {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <textarea name="" id="j_textarea" cols="30" rows="10" class="text-area"
+            placeholder="请填入链接，点击提交生成链接二维码"></textarea>
+        <button id="j_submit" class="submit-btn">提交</button>
+        <div id="qrcode" class="qr-code"></div>
+    </div>
+    <script>
+        $(function () {
+            $('#j_submit').on('click', function () {
+                var url = $('#j_textarea').val().trim();
+                if (url && url.length > 0) {
+                    var $qr_children = $('#qrcode').children();
+                    if ($qr_children.length > 0) {
+                        $qr_children.remove();
+                    }
+                    var qrcode = new QRCode("qrcode", url);
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
