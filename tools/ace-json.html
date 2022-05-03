@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>JSON在线格式化</title>
+    <script type="text/javascript" src="../static/libs/ace/ace.min.js"></script>
+    <script type="text/javascript" src="../static/libs/ace/worker-json.min.js"></script>
+    <script type="text/javascript" src="../static/libs/ace/mode-json.min.js"></script>
+    <script type="text/javascript" src="../static/libs/ace/theme-twilight.js"></script>
+
+</head>
+
+<body>
+    <div id="editor"></div>
+    <div class="btn-wrap">
+        <input type="button" value="运行" id="run">
+    </div>
+
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #fff;
+        }
+
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 50px;
+            left: 0;
+        }
+
+        #run {
+            position: absolute;
+            bottom: 0;
+            /* height: 36px; */
+            /* line-height: 36px; */
+            text-align: center;
+            width: 60px;
+            margin: 10px 0px 10px 41px;
+            color: #fff;
+            background-color: #3280fc;
+            border-color: #1970fc;
+            border-radius: 15px;
+        }
+    </style>
+
+    <script>
+        var editor = ace.edit("editor");
+        editor.setOptions({
+            mode: 'ace/mode/json',
+            theme: 'ace/theme/twilight',
+            tabSize: 2,
+            wrap: true,
+            displayIndentGuides: false
+        })
+        document.querySelector('#run')
+            .addEventListener('click', () => {
+                var _content = editor.getValue()
+                var obj = JSON.parse(_content)
+                editor.setValue(JSON.stringify(obj, null, 2));
+            })
+    </script>
+</body>
+
+</html>
