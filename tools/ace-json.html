@@ -11,34 +11,47 @@
 </head>
 
 <body>
-    <div id="editor"></div>
-    <div class="btn-wrap">
-        <input type="button" value="运行" id="run">
+    <div class="wrap">
+        <div class="title">JSON在线格式化</div>
+        <div id="editor"></div>
+        <div class="btn-wrap">
+            <input type="button" value="运行" id="run">
+        </div>
     </div>
+
 
     <style type="text/css">
         body {
             padding: 0;
             margin: 0;
             background-color: #fff;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .wrap {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bolder;
+            margin-left: 5px;
         }
 
         #editor {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 50px;
-            left: 0;
+            flex: 1;
         }
 
         #run {
-            position: absolute;
-            bottom: 0;
-            /* height: 36px; */
-            /* line-height: 36px; */
             text-align: center;
             width: 60px;
-            margin: 10px 0px 10px 41px;
+            margin: 10px;
             color: #fff;
             background-color: #3280fc;
             border-color: #1970fc;
@@ -56,6 +69,7 @@
             displayIndentGuides: false,
             showGutter: false
         })
+        editor.renderer.setShowGutter(false);
         document.querySelector('#run')
             .addEventListener('click', () => {
                 var _content = editor.getValue()
